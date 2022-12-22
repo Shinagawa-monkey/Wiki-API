@@ -3,17 +3,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-// const ejs = require("ejs");
 const port = 3000;
 const app = express();
-
-// app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
-// app.use(express.static('public'));
 
 main().catch(err => console.log(err));
 async function main() {
@@ -61,49 +56,8 @@ app.route('/articles')
     });
   });
 
-// Refactoring code with app.route() method
-
-// app.get('/articles', (req, res) => {
-//   // res.send('Hello World!');
-//   Article.find({}, (err, foundArticles) => {
-//     //console.log(foundArticles);
-//     if(!err) {
-//       res.send(foundArticles);
-//     } else {
-//       res.send(err);
-//     };
-//   });
-// });
-//
-// app.post('/articles', (req, res) => {
-//   // console.log(req.body.title);
-//   // console.log(req.body.content);
-//   const newArticle = new Article({
-//     title: req.body.title,
-//     content: req.body.content
-//   });
-//   newArticle.save((err) => {
-//     if (!err) {
-//       res.send("Successfully added a new article.");
-//     } else {
-//       res.send(err);
-//     }
-//   });
-// });
-//
-// app.delete('/articles', (req, res) => {
-//   Article.deleteMany({}, err => {
-//     if (!err) {
-//       res.send("Successfully deleted all articles.");
-//     } else {
-//       res.send(err);
-//     }
-//   });
-// });
-
-
 // Requests targeting a specific article
-/* In delete metho I used result - an object that has properties where you can see the status of
+/* In delete method I used result - an object that has properties where you can see the status of
 the update or delete operation such as modifiedCount or matchedCount and deletedCount */
 app.route('/articles/:articleTitle')
   .get((req, res) => {
